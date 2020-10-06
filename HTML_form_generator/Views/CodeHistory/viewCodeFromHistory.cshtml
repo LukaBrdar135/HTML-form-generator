@@ -1,0 +1,39 @@
+﻿@model HTML_form_generator.Models.CodeHistory
+@{
+    ViewBag.Title = "Code from history";
+}
+
+<h2>Code from history</h2>
+<h4>Date of generation: @Model.Date </h4>
+<hr />
+
+<button id="button" class="btn btn-primary" style="float:right; margin-left:-100px">Copy code</button>
+<pre id="myInput" class="language-html"><code id="code">@Model.Code</code></pre>
+
+<hr />
+
+<div>
+    <h3>Preview</h3>
+    <hr />
+    @Html.Raw(Model.Code)
+</div>
+
+<style>
+    textarea {
+        position: absolute;
+        left: -100%;
+    }
+</style>
+
+<script>
+    function copyFunction() {
+        const copyText = document.getElementById("myInput").textContent;
+        const textArea = document.createElement('textarea');
+        textArea.textContent = copyText;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+    }
+
+    document.getElementById('button').addEventListener('click', copyFunction);
+</script>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<HTML_form_generator.Models.Style>
+@{
+    ViewBag.Title = "All styles";
+}
+
+<h2>All styles</h2>
+<hr />
+@if (TempData["success"] != null)
+{
+    <p style="color: #0f0">
+        @TempData["success"].ToString()
+    </p>
+}
+@Html.ActionLink("Add new style", "newStyle", "Admin", new { @class = "btn btn-success" })
+
+@if (TempData["Success"] != null) { Html.Raw("<p class=\"successs\">" + TempData["Success"] + "</p>"); }
+<table class="table table-striped">
+
+    <tr>
+        <th>Name</th>
+        <th>Details/Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@Html.ActionLink("Code details/Edit style", "editStyle", new { id = item.id })</td>
+            <td> @Html.ActionLink("Delete", "deleteStyle", new { id = item.id }, new { @style = "color: #f00", onclick = "return confirm('Are you sure you want to delete this style? If you delte this style all Pre-made forms with this style will be changed to no style.')" })</td>
+        </tr>
+    }
+</table>

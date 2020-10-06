@@ -1,0 +1,91 @@
+﻿@model IEnumerable<HTML_form_generator.Models.Style>
+@{
+    ViewBag.Title = "Custom form";
+}
+
+<h2>Create custom form</h2>
+<hr />
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="display:inline-block">Style preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>With bootstrap</p>
+                <div id="form" class="form-inline" style="display:inline-block; padding:10px;">
+                    <div class="form-group">
+                        <label class="control-label">Preview</label><br />
+                        <input class="form-control" type="text" /><br />
+                    </div>
+                    <br />
+                    <input type="submit" class="btn" />
+                </div>
+                <hr />
+                <p>Without bootstrap</p>
+                <div id="form" class="form-inline" style="display:inline-block; padding:10px;">
+                    <label>Preview</label><br />
+                    <input type="text" /><br />
+                    <input type="submit"  />
+                </div>
+                <style id="stylePreview">
+                </style>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button id="addColumn" class="btn btn-success" onclick="add()" data-toggle="tooltip" data-placement="top" title="Add field">+</button>
+<button class="btn btn-danger" onclick="remove()" data-toggle="tooltip" data-placement="top" title="Remove last field">-</button>
+<button id="previewBtn" class="btn btn-primary clsDetails" style="float:right; margin-right:170px">Preview style</button>
+@using (Html.BeginForm("customFormPost", "Generator", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+
+<div id="styleSelect" style="float: right;margin-top:-70px">
+    <h3>Select Style</h3>
+    <select required onchange="preview()" name="styleSelect" id="selectS" style="color: #000">
+        @foreach (var s in ViewBag.Styles)
+        {
+            if (s.Name == "None")
+            {
+                <option selected value="/">@s.Name</option>
+            }
+            else
+            {
+                <option value="@s.Code">@s.Name</option>
+            }
+        }
+    </select>
+    <br />
+    <div style="float:right">
+        <input type="checkbox" checked name="cb" id="cb" value="bootstrap" />
+        <label for="cb">With bootstrap?</label>
+    </div>
+</div>
+    
+        
+
+    <div id="main">
+
+    </div>
+    <input type="hidden" id="numberOfSelects" name="numberOfSelects" value="0" />
+    <hr />
+    <div class="form-group">
+        <label>Submit button text</label>
+        <input required type="text" name="submitButton" class="form-control" />
+    </div>
+    <input type="submit" value="Generate" class="btn btn-success" />
+}
+
+
+
+<script src="~/Scripts/generator.js"></script>
+

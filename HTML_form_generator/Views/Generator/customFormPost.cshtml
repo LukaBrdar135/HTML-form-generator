@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Custom form";
+}
+
+<h2>Form preview</h2>
+<hr />
+@Html.Raw(ViewBag.Code)
+
+
+
+<hr />
+<h2>Code</h2>
+<hr />
+<button id="button" class="btn btn-primary" style="float:right; margin-left:-100px">Copy code</button>
+<pre id="myInput" class="language-html"><code id="code">@ViewBag.Code</code></pre>
+
+<style>
+    textarea {
+        position: absolute;
+        left: -100%;
+    }
+</style>
+
+<script>
+    function copyFunction() {
+        const copyText = document.getElementById("myInput").textContent;
+        const textArea = document.createElement('textarea');
+        textArea.textContent = copyText;
+        document.body.append(textArea);
+        textArea.select();
+        document.execCommand("copy");
+    }
+     
+    document.getElementById('button').addEventListener('click', copyFunction);
+
+
+   @if (User.IsInRole("Admin"))
+   {
+       <text>
+       document.getElementById('form').action = '/Admin/preMadeForms';
+        document.getElementById('form').method = 'POST';
+    </text>
+   }
+   else {
+       <text>
+    document.getElementById('form').action = '/CodeHistory';
+    document.getElementById('form').method = 'POST';
+    </text>
+   }
+   
+    
+    
+</script>
+

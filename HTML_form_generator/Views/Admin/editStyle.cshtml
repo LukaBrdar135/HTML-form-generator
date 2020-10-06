@@ -1,0 +1,99 @@
+﻿@model HTML_form_generator.Models.Style
+@{
+    ViewBag.Title = "Edit style";
+}
+
+<h2>Edit style</h2>
+<hr />
+<button id="previewBtn" onclick="preview()" class="btn btn-primary clsDetails" style="float:right;">Preview style</button>
+
+<style id="style">
+</style>
+
+@if (ViewBag.Success != null)
+{<p style="color:#0f0">@ViewBag.Success</p>}
+@if (ViewBag.Error != null)
+{<p style="color:#f00">@ViewBag.Error</p>}
+
+@using (Html.BeginForm("editStyle", "Admin", FormMethod.Post, new { @class = "form", role = "form" }))
+{
+    <div class="form-group">
+        <label>Style name</label>
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = true })
+    </div>
+    <label>Code</label><br />
+    <small>For every css style use " #form " as the generated form has id="form".</small>
+    @Html.TextAreaFor(model => model.Code, new { @id = "editor" })
+    @Html.HiddenFor(model => model.id)
+    <input type="submit" class="btn btn-success" value="Edit style" />
+}
+
+
+<script src="~/Content/codemirror/lib/codemirror.js"></script>
+<link href="~/Content/codemirror/lib/codemirror.css" rel="stylesheet" />
+<script src="~/Content/codemirror/mode/css/css.js"></script>
+<script src="~/Content/codemirror/addon/edit/closebrackets.js"></script>
+<link href="~/Content/codemirror/theme/lesser-dark.css" rel="stylesheet" />
+
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+        mode: "css",
+        theme: "lesser-dark",
+        lineNumbers: true,
+        autoCloseBrackets: true
+    });
+
+    function preview() {
+        var style = document.getElementById('style');
+        style.innerHTML = editor.getValue();
+    }
+
+    $(document).ready(function () {
+        $(document).on("click", ".clsDetails", OpenModalPopUp);
+    });
+
+
+    function OpenModalPopUp() {
+        var itemName = $(this).data("item");
+        $("#myModal").modal();
+    }
+
+</script>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="display:inline-block">Style preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" style="color: #fff">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>With bootstrap</p>
+                <div id="form" class="form-inline" style="display:inline-block; padding:10px;">
+                    <div class="form-group">
+                        <label class="control-label">Preview</label><br />
+                        <input class="form-control" type="text" /><br />
+                    </div>
+                    <br />
+                    <input type="submit" class="btn" />
+                </div>
+                <hr />
+                <p>Without bootstrap</p>
+                <div id="form" class="form-inline" style="display:inline-block; padding:10px;">
+                    <label>Preview</label><br />
+                    <input type="text" /><br />
+                    <input type="submit" />
+                </div>
+                <style id="stylePreview">
+                </style>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
