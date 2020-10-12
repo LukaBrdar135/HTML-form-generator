@@ -469,7 +469,7 @@ namespace HTML_form_generator.Controllers
             model.FirstName = user.FirstName;
             model.LastName = user.LastName;
 
-            TempData["success"] = "Successfully edited account details";
+            
 
             return View(model);
         }//EditAccount()
@@ -497,6 +497,7 @@ namespace HTML_form_generator.Controllers
 
                 await SignInManager.SignInAsync(user, true, true);
 
+                TempData["success"] = "Successfully edited account details";
                 return RedirectToAction("Index", "Manage");
             }
             else

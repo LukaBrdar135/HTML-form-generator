@@ -24,9 +24,8 @@ namespace HTML_form_generator.Models
             StringBuilder code = new StringBuilder();
             foreach (string input in radioInputs)
             {
-                code.Append("\t\t<div class=\"form-check\">\n");
-                code.Append("\t\t\t<input type=\"radio\" name=\"radio" + number + "\" class=\"form-check-input\" value=\"" + input.Replace("\"", "") + "\">\n");
-                code.Append("\t\t\t<label class=\"form-check-label\">" + input + "</label>\n");
+                code.Append("\t\t<div class=\"radio\">\n");
+                code.Append("\t\t\t<label><input type=\"radio\" name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">"+input+"</label>\n");
                 code.Append("\t\t</div>\n");
             }
             return code;
@@ -38,9 +37,8 @@ namespace HTML_form_generator.Models
             foreach (string input in cboxInputs)
             {
                 string name = input.Replace("\"", "");
-                code.Append("\t\t<div class=\"form-check\">\n");
-                code.Append("\t\t\t<input type=\"checkbox\" name=\"" + name + "\" class=\"form-check-input\" value=\"" + name + "\">\n");
-                code.Append("\t\t\t<label class=\"form-check-label\">" + input + "</label>\n");
+                code.Append("\t\t<div class=\"checkbox\">\n");
+                code.Append("\t\t\t<label><input type=\"checkbox\" name=\"" + name + "\" value=\"" + name + "\">"+input+"</label>\n");
                 code.Append("\t\t</div>\n");
             }
             return code;
@@ -61,9 +59,8 @@ namespace HTML_form_generator.Models
             StringBuilder code = new StringBuilder();
             foreach (string input in radioInputs)
             {
-                code.Append("\t\t<div class=\"form-check\">\n");
-                code.Append("\t\t\t<input type=\"radio\" checked name=\"radio" + number + "\" class=\"form-check-input\" value=\"" + input.Replace("\"", "") + "\">\n");
-                code.Append("\t\t\t<label class=\"form-check-label\">" + input + "</label>\n");
+                code.Append("\t\t<div class=\"radio\">\n");
+                code.Append("\t\t\t<label><input type=\"radio\" checked name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">" + input + "</label>\n");
                 code.Append("\t\t</div>\n");
             }
             return code;

@@ -70,12 +70,12 @@ namespace HTML_form_generator.Models
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "The {0} must NOT contain any digits or signs.")]
+        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "{0} must NOT contain any digits or signs.")]
         [Display(Name = "First name")]
         public string FirstName { get; set; }
 
         [Required]
-        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "The {0} must NOT contain any digits or signs.")]
+        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "{0} must NOT contain any digits or signs.")]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
 
@@ -128,12 +128,12 @@ namespace HTML_form_generator.Models
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "The {0} must NOT contain any digits or signs.")]
+        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "{0} must NOT contain any digits or signs.")]
         [Display(Name = "First name")]
         public string FirstName { get; set; }
 
         [Required]
-        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "The {0} must NOT contain any digits or signs.")]
+        [RegularExpression(@"[A-Z a-z]+", ErrorMessage = "{0} must NOT contain any digits or signs.")]
         [Display(Name = "Last name")]
         public string LastName { get; set; }
     }
