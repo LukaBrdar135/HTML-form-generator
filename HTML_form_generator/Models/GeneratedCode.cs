@@ -81,8 +81,7 @@ namespace HTML_form_generator.Models
             StringBuilder code = new StringBuilder();
             foreach (string input in radioInputs)
             {
-                code.Append("\t<input type=\"radio\" name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">\n");
-                code.Append("\t<label>" + input + "</label><br>\n");
+                code.Append("\t<label><input type=\"radio\" name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">"+input+"</label><br>\n");
             }
             return code;
         }//radioFieldsNoBS()
@@ -93,8 +92,7 @@ namespace HTML_form_generator.Models
             foreach (string input in cboxInputs)
             {
                 string name = input.Replace("\"", "");
-                code.Append("\t<input type=\"checkbox\" name=\"" + name + "\" value=\"" + name + "\">\n");
-                code.Append("\t<label>" + input + "</label><br>\n");
+                code.Append("\t<label><input type=\"checkbox\" name=\"" + name + "\" value=\"" + name + "\">"+input+"</label><br>\n");
             }
             return code;
         }//cboxFieldsNoBS()
@@ -112,8 +110,7 @@ namespace HTML_form_generator.Models
             StringBuilder code = new StringBuilder();
             foreach (string input in radioInputs)
             {
-                code.Append("\t<input type=\"radio\" checked name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">\n");
-                code.Append("\t<label>" + input + "</label><br>\n");
+                code.Append("\t<label><input type=\"radio\" checked name=\"radio" + number + "\" value=\"" + input.Replace("\"", "") + "\">" + input + "</label><br>\n");
             }
             return code;
         }//radioFieldsNoBSChecked()
